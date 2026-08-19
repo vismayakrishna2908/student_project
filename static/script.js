@@ -1,0 +1,54 @@
+async function addStudent() {
+    const name =
+        document.getElementById("name").value;
+    const age =
+        document.getElementById("age").value;
+    const course =
+        document.getElementById("course").value;
+    const response =
+        await fetch(
+            "/add_student",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+                body: JSON.stringify(
+                    {
+                        name: name,
+                        age: age,
+                        course: course
+                    }
+                )
+            }
+        );
+    const data =
+        await response.json();
+    alert(data.message);
+}
+async function viewStudents() {
+    const response =
+        await fetch("/get_students");
+    const students =
+        await response.json();
+    const list =
+        document.getElementById(
+            "studentList"
+        );
+    list.innerHTML = "";
+    students.forEach(
+        function(student) {
+            const item =
+                document.createElement("li");
+            item.textContent =
+                student[1] +
+                " | Age: " +
+                student[2] +
+                " | Course: " +
+                student[3];
+
+            list.appendChild(item);
+        }
+    );
+}
