@@ -3,6 +3,10 @@ async function addStudent() {
         document.getElementById("name").value;
     const age =
         document.getElementById("age").value;
+    const grade =
+        document.getElementById("grade").value;
+    const blood_group =
+        document.getElementById("blood_group").value;
     const course =
         document.getElementById("course").value;
     const response =
@@ -18,6 +22,8 @@ async function addStudent() {
                     {
                         name: name,
                         age: age,
+                        grade:grade,
+                        blood_group:blood_group,
                         course: course
                     }
                 )
@@ -45,8 +51,12 @@ async function viewStudents() {
                 student[1] +
                 " | Age: " +
                 student[2] +
-                " | Course: " +
-                student[3];
+                " | Grade: " +
+                student[3] +
+                " | blood_group:"+
+                student[4]+
+                " | Course:"
+                student[5]+
 
             list.appendChild(item);
         }

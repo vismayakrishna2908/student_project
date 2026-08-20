@@ -12,6 +12,8 @@ def create_database():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             age INTEGER,
+            grade INTEGER,
+            blood_group TEXT,
             course TEXT
         )
     """)
@@ -33,7 +35,9 @@ def add_student():
     data = request.get_json()
 
     name = data["name"]
-    age = data["age"]
+    age = data["age"],age <= 100
+    grade = data["grade"]
+    blood_group = ["blood_group"]
     course = data["course"]
 
     connection = sqlite3.connect("students.db")
@@ -42,10 +46,10 @@ def add_student():
 
     cursor.execute(
         """
-        INSERT INTO students(name, age, course)
+        INSERT INTO students(name, age,grade,blood_group,course)
         VALUES(?,?,?)
         """,
-        (name, age, course)
+        (name, age, grade,blood_group, course)
     )
 
     connection.commit()
